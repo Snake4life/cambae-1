@@ -1,0 +1,37 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: open-nsfw
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      io.kompose.service: open-nsfw
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: open-nsfw
+        app: open-nsfw
+    spec:
+      containers:
+      - env:
+        - name: PORT
+          value: '5000'
+        image: patt1293/open-nsfw:latest
+        imagePullPolicy: Always
+        name: open-nsfw
+        ports:
+        - containerPort: 5000
+          name: 5000tcp01
+          protocol: TCP
+        resources: {}
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: dockerhub
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+status: {}

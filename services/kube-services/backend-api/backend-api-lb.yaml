@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: backend-api
+spec:
+  rules:
+  - host: api.external-dns.cambae.io
+    http:
+      paths:
+      - backend:
+          serviceName: backend-api
+          servicePort: 6902
+        path: /

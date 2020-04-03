@@ -1,0 +1,1 @@
+docker build -t patt1293/open-nsfw:latest ../../open-nsfw/ && docker push patt1293/open-nsfw:latest

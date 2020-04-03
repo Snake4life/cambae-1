@@ -1,0 +1,36 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: logstash
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      io.kompose.service: logstash
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: logstash
+    spec:
+      containers:
+      - image: patt1293/logstash:latest
+        imagePullPolicy: Always
+        name: logstash
+        ports:
+        - containerPort: 5044
+          name: 5044tcp01
+          protocol: TCP
+        - containerPort: 5044
+          name: 5044udp01
+          protocol: UDP
+        resources: {}
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: dockerhub
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+status: {}

@@ -1,0 +1,2 @@
+kubectl delete -f open-nsfw-deploy.yaml
+kubectl create -f open-nsfw-deploy.yaml

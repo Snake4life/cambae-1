@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-kibana-lb
+spec:
+  rules:
+  - host: kibana.external-dns.cambae.io
+    http:
+      paths:
+      - backend:
+          serviceName: nginx-kibana
+          servicePort: 8080
+        path: /
+  tls:
+  - hosts:
+    - kibana.external-dns.cambae.io
+    secretName: kibana

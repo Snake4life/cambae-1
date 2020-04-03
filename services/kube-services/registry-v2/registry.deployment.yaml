@@ -1,0 +1,40 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: registry
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      io.kompose.service: registry
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: registry
+    spec:
+      containers:
+      - image: registry:2
+        imagePullPolicy: Always
+        name: registry
+        ports:
+        - containerPort: 5000
+          name: 5601tcp01
+          protocol: TCP
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/lib/registry
+          name: registry
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: dockerhub
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: registry
+        persistentVolumeClaim:
+          claimName: registry-volume
+status: {}

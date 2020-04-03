@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    field.cattle.io/targetWorkloadIds: '["deployment:services:kibana"]'
+    external-dns.alpha.kubernetes.io/hostname: kibana.external-dns.cambae.io
+  name: kibana
+  labels:
+    run: kibana
+spec:
+  ports:
+  - port: 5601
+    protocol: TCP
+  selector:
+    run: kibana
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    field.cattle.io/targetWorkloadIds: '["deployment:services:nginx-kibana"]'
+    external-dns.alpha.kubernetes.io/hostname: nginx-kibana.external-dns.cambae.io
+  name: nginx-kibana
+  labels:
+    run: nginx-kibana
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+  selector:
+    run: nginx-kibana

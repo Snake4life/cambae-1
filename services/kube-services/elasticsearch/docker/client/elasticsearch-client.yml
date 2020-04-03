@@ -1,0 +1,23 @@
+---
+## Default Elasticsearch configuration from elasticsearch-docker.
+## from https://github.com/elastic/elasticsearch-docker/blob/master/build/elasticsearch/elasticsearch.yml
+#
+cluster.name: "cambae-es-cluster"
+network.host: 0.0.0.0
+path:
+    data: /var/lib/elasticsearch
+node.name: "${HOSTNAME}"
+node.max_local_storage_nodes: 10
+#define node 1 as master-eligible:
+#node.ingest: true
+
+#define nodes 2 and 3 as data nodes:
+xpack:
+  security:
+    authc:
+      realms:
+        file1:
+          type: file
+          order: 0
+node.data: true
+discovery.zen.ping.unicast.hosts: ["elasticsearch-client-0.esclient.services.svc.cluster.local","elasticsearch-master-0.esmaster.services.svc.cluster.local"]

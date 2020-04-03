@@ -1,8 +1,0 @@
-version: '2'
-services:
-  irc-worker:
-    scale: 1
-    start_on_create: true
-  nsfw-api:
-    scale: 1
-    start_on_create: true

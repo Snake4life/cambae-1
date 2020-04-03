@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: es-client-storage
+spec:
+  capacity:
+    storage: 500Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/esclient"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: es-client-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 500Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: es-master-storage
+spec:
+  capacity:
+    storage: 500Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/esmaster"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: es-master-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 500Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: es-lb-storage
+spec:
+  capacity:
+    storage: 500Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/esdata"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: es-lb-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 500Gi

@@ -1,0 +1,80 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: kibana
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      io.kompose.service: kibana
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: kibana
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: elk
+                operator: In
+                values:
+                - "true"
+      containers:
+      - image: patt1293/kibana:latest
+        imagePullPolicy: Always
+        name: kibana
+        ports:
+        - containerPort: 5601
+          name: 5601tcp01
+          protocol: TCP
+        resources: {}
+        volumeMounts:
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: dockerhub
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      volumes:
+status: {}
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: nginx-kibana
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      io.kompose.service: nginx-kibana
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: nginx-kibana
+    spec:
+      containers:
+      - image: patt1293/nginx-kibana:latest
+        imagePullPolicy: Always
+        name: nginx-kibana
+        ports:
+        - containerPort: 8080
+          name: 4443tcp01
+          protocol: TCP
+        resources: {}
+        volumeMounts:
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: dockerhub
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      volumes:
+status: {}

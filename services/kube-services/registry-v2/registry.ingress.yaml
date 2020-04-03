@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: registry-lb
+spec:
+  rules:
+  - host: registry.services.external-dns.cambae.io
+    http:
+      paths:
+      - backend:
+          serviceName: registry-service
+          servicePort: 5000
+        path: /

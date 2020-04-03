@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    field.cattle.io/targetWorkloadIds: '["deployment:services:open-nsfw"]'
+    external-dns.alpha.kubernetes.io/hostname: open-nsfw.external-dns.cambae.io
+  name: nsfw
+  labels:
+    run: nsfw
+spec:
+  ports:
+  - name: 5000tcp02
+    port: 5000
+    protocol: TCP
+  selector:
+    run: nsfw

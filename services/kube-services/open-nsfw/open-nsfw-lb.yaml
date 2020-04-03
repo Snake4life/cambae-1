@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: open-nsfw
+spec:
+  rules:
+  - host: open-nsfw.external-dns.cambae.io
+    http:
+      paths:
+      - backend:
+          serviceName: open-nsfw
+          servicePort: 5000
+        path: /

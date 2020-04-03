@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: elk-lb
+spec:
+  rules:
+  - host: elk.206.189.124.235.xip.io
+    http:
+      paths:
+      - backend:
+          serviceName: elk-service
+          servicePort: 5601
+        path: /

@@ -1,20 +1,4 @@
 #!/bin/bash
-#RANDOMWAIT=$((1 + RANDOM % 30))
-#node generate_log.js init "yay for using sleeps to fix bad code! sleeping for ${RANDOMWAIT} seconds"
-#sleep $RANDOMWAIT
-#node generate_log.js init "npm install deps started"
-#npm install >> /var/log/myfreebae/npm_install.log 2>&1
-#node generate_log.js init "npm install deps complete"
-
-#npm install -g typescript @types/node >> /var/log/myfreebae/npm_install.log 2>&1
-#node generate_log.js init "npm install typescript complete"
-#node generate_log.js init "npm install deps - log /var/log/myfreebae/npm_install.log"
-
-#service nginx start > /var/log/chaturbae/supervisor.log 2>&1 &
-#node generate_log.js init "starting supervisord - /var/log/chaturbae/supervisor.log"
-#/usr/bin/supervisord > /var/log/chaturbae/supervisor.log 2>&1 &
-#sleep 3
-#node generate_log.js init "complete"
+#echo "10.43.254.119 api.services.svc.cluster.local" >> /etc/hosts
+#echo "10.43.32.180 nsfw.services.svc.cluster.local" >> /etc/hosts
 node mfcbae.js
-#node mfcbae.js
-#tail -f /dev/null

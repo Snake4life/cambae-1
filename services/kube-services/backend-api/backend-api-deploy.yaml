@@ -1,0 +1,40 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: backend-api
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      io.kompose.service: backend-api
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: backend-api
+    spec:
+      containers:
+      - env:
+        - name: SENDGRID_KEY
+          value: '1234'
+        - name: MASTER_KEY
+          value: kQe5bv7doIgLauIgL1DmnPeGr7cd5iS9
+        - name: JWT_SECRET
+          value: q478FRlq1Dy37JjcO3ZWL9v3lzUllBIg
+        image: patt1293/backend-api:latest
+        imagePullPolicy: Always
+        name: backend-api
+        ports:
+        - containerPort: 6902
+          name: 6902tcp01
+          protocol: TCP
+        resources: {}
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: dockerhub
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+status: {}

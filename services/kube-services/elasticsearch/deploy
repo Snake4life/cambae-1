@@ -1,0 +1,8 @@
+kubectl delete -f elasticsearch-deploy.yaml
+kubectl delete -f elasticsearch-client-deploy.yaml
+kubectl delete -f elasticsearch-data-deploy.yaml
+kubectl create -f elasticsearch-deploy.yaml --validate=false
+sleep 60
+kubectl create -f elasticsearch-svc.yaml
+kubectl create -f elasticsearch-client-deploy.yaml --validate=false
+kubectl create -f elasticsearch-data-deploy.yaml --validate=false

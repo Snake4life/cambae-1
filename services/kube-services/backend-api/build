@@ -1,0 +1,1 @@
+docker build -t patt1293/backend-api:latest ../../backend-api/ && docker push patt1293/backend-api:latest

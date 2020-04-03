@@ -9,14 +9,14 @@ services:
         io.rancher.container.pull_image: always
         io.rancher.scheduler.affinity:host_label: service=client
       environment:
-        MODEL_USERNAME: ${MNAME}
+        MODEL_ID: 22547213
         BACKEND: "elk.backend.chaturbae.tv"
         SYSLOG_TAG: '{docker: "myfreebae-client"}'
-        LOGSTASH_FIELDS: "platform=docker,job=myfreebae-client,model_username=${MNAME}"
+        LOGSTASH_FIELDS: "platform=docker,job=myfreebae-client,model_id=22547213"
         DECODE_JSON_LOGS: "true"
         DEBUG: "myfreebae:*"
       volumes:
         - '.:/usr/src/app'
       entrypoint:
-        - /usr/local/bin/nodemon
-        - mfcbae.js
+        - /usr/local/bin/node
+        - mfcbae_getname.js

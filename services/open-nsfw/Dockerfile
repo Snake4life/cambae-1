@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         cmake \
         git \
         wget \
+        jq \
         libatlas-base-dev \
         libboost-all-dev \
         libgflags-dev \
@@ -59,7 +60,7 @@ RUN pip install --ignore-installed pyOpenSSL --upgrade
 # Add our code
 ADD ./web /opt/web/
 WORKDIR /opt/web
-
+ADD ./entrypoint.sh .
 # Run the app.  CMD is required to run on Heroku
 # $PORT is set by Heroku
-CMD gunicorn --timeout 360 --bind 0.0.0.0:$PORT -k gevent --worker-connections 32 app:app
+CMD bash ./entrypoint.sh

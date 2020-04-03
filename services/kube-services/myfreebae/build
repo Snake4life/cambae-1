@@ -1,0 +1,1 @@
+docker build -t patt1293/myfreebae:latest ../../../clients/myfreebae && docker push patt1293/myfreebae:latest

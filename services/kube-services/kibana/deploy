@@ -1,0 +1,2 @@
+kubectl delete -f kibana-deploy.yaml -f kibana-svc.yaml
+kubectl create -f kibana-deploy.yaml -f kibana-svc.yaml
